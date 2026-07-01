@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import "./globals.css";
+import SiteHeader from "@/components/layout/SiteHeader";
+import FloatingCallButton from "@/components/layout/FloatingCallButton";
+import SiteFooter from "@/components/layout/SiteFooter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-vazirmatn",
 });
 
 export const metadata: Metadata = {
-  title: "چاه‌یار",
-  description: "چاه‌یار",
+  title: {
+    default: "چاه‌یار | خدمات تخلیه چاه شبانه‌روزی — تماس فوری",
+    template: "%s | چاه‌یار",
+  },
+  description:
+    "خدمات تخلیه چاه، لوله‌بازکنی و حفر چاه با اعزام سریع، گارانتی کتبی و پوشش سراسری تهران.",
 };
 
 export default function RootLayout({
@@ -23,11 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="fa" dir="rtl" className={vazirmatn.variable}>
+      <body>
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        <FloatingCallButton />
+      </body>
     </html>
   );
 }
