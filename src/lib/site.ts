@@ -1,9 +1,9 @@
 export const BRAND = "چاه‌یار";
 export const TAGLINE = "خدمات تخلیه چاه شبانه‌روزی";
-export const PHONE = "۰۲۱-۹۱۰۰۸۸۷۷";
-export const PHONE_TEL = "+982191008877";
-export const MOBILE = "۰۹۱۲-۳۴۵-۶۷۸۹";
-export const MOBILE_TEL = "+989123456789";
+export const PHONE = "0903-800-7877";
+export const PHONE_TEL = "+989038007877";
+export const MOBILE = "0903-800-7877";
+export const MOBILE_TEL = "+989038007877";
 
 export const NAV = [
   { href: "/", label: "خانه" },

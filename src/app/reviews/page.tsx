@@ -73,7 +73,7 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 10 }}>
+      <section className="section pt-2.5">
         <div className="container">
           <ReviewsGrid reviews={reviews} />
         </div>

@@ -15,10 +15,13 @@ const SERVICE_TYPES = [
 ];
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "pending" | "success" | "error"
+  >("idle");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    console.log("submit clicked");
     const form = e.currentTarget;
     const data = new FormData(form);
 
@@ -107,11 +110,16 @@ export default function ContactForm() {
         <label>توضیحات (اختیاری)</label>
         <textarea name="notes" placeholder="شرح مختصری از مشکل…" />
       </div>
-      <button type="submit" className="btn btn-accent btn-block btn-lg" disabled={status === "pending"}>
+      <button
+        type="submit"
+        className="btn btn-accent btn-block btn-lg"
+        disabled={status === "pending"}
+      >
         <Send /> {status === "pending" ? "در حال ارسال…" : "ارسال درخواست"}
       </button>
       <p className="muted center" style={{ fontSize: 13, margin: "14px 0 0" }}>
-        <Lock style={{ width: 13, verticalAlign: -2 }} /> اطلاعات شما محرمانه می‌ماند.
+        <Lock style={{ width: 13, verticalAlign: -2 }} /> اطلاعات شما محرمانه
+        می‌ماند.
       </p>
     </form>
   );
