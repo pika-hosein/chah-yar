@@ -11,7 +11,9 @@ export default function CtaBand({ title, description, showPhoneNumber }: CtaBand
   return (
     <div className="cta-band">
       <h2>{title}</h2>
-      <p>{description}</p>
+      <p className="text-gray-400!">
+        {description}
+      </p>
       <a href={`tel:${PHONE_TEL}`} className="btn btn-ghost btn-lg">
         <PhoneCall />
         تماس بگیرید

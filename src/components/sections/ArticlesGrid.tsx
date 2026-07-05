@@ -10,7 +10,11 @@ export default function ArticlesGrid({ articles }: ArticlesGridProps) {
   return (
     <div className="grid grid-3">
       {articles.map((a) => (
-        <Link key={a.slug} href={`/blog/${a.slug}`} className="card article-card">
+        <Link
+          key={a.slug}
+          href={`/blog/${a.slug}`}
+          className="card article-card"
+        >
           <div className="ph thumb">[ تصویر مقاله ]</div>
           <div className="body">
             <span className="cat">{a.cat}</span>
@@ -20,10 +24,6 @@ export default function ArticlesGrid({ articles }: ArticlesGridProps) {
               <span>
                 <Calendar />
                 {a.date}
-              </span>
-              <span>
-                <Clock />
-                {a.read}
               </span>
             </div>
           </div>
