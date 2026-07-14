@@ -276,30 +276,6 @@ img {
   display: none;
 }
 
-/* ---------- نوار اعتماد ---------- */
-.trustbar {
-  background: var(--brand);
-  color: #fff;
-}
-.trustbar .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 30px;
-  justify-content: center;
-  padding-block: 11px;
-}
-.trustbar span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 14px;
-  font-weight: 600;
-}
-.trustbar svg {
-  width: 16px;
-  height: 16px;
-  opacity: 0.9;
-}
 
 /* ---------- هیرو ---------- */
 .hero {
