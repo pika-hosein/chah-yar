@@ -3,105 +3,123 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Droplets, Phone, FilePenLine, Menu, X } from "lucide-react";
+import { Droplets, FilePenLine, Menu, Phone, X } from "lucide-react";
 import { BRAND, NAV, PHONE, PHONE_TEL, TAGLINE } from "@/lib/site";
 
+const logo = "flex items-center gap-3 text-xl font-extrabold";
+const mark =
+    "grid size-11 place-items-center rounded-xl bg-blue-700 text-white";
+
 export default function SiteHeader() {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-
-  const isActive = (href: string) =>
-    pathname === href || (href === "/blog" && pathname.startsWith("/blog/"));
-
-  return (
-    <>
-      <header className="site-header">
-        <div className="container header-inner">
-          <Link href="/" className="logo">
-            <span className="logo-mark">
-              <Droplets />
-            </span>
-            <span>
-              {BRAND}
-              <small>{TAGLINE}</small>
-            </span>
-          </Link>
-
-          <nav className="nav">
-            {NAV.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                className={isActive(n.href) ? "active" : ""}
-              >
-                {n.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="header-cta">
-            <a href={`tel:${PHONE_TEL}`} className="header-phone">
-              <Phone />
-              <span>{PHONE}</span>
-            </a>
-            <button
-              className="hamburger"
-              aria-label="منو"
-              onClick={() => setOpen(true)}
-            >
-              <Menu />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <div
-        className={`mobile-nav${open ? " open" : ""}`}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) setOpen(false);
-        }}
-      >
-        <div className="panel">
-          <div className="top">
-            <span className="logo">
-              <span className="logo-mark">
-                <Droplets />
-              </span>
-              {BRAND}
-            </span>
-            <button className="close" onClick={() => setOpen(false)}>
-              <X />
-            </button>
-          </div>
-          {NAV.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              className={isActive(n.href) ? "active" : ""}
-              onClick={() => setOpen(false)}
-            >
-              {n.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="btn btn-accent btn-block"
-            style={{ marginTop: 12 }}
-            onClick={() => setOpen(false)}
-          >
-            <FilePenLine />
-            درخواست خدمات
-          </Link>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            className="btn btn-ghost btn-block"
-            style={{ marginTop: 8 }}
-          >
-            <Phone />
-            {PHONE}
-          </a>
-        </div>
-      </div>
-    </>
-  );
+    const pathname = usePathname();
+    const [open, setOpen] = useState(false);
+    const isActive = (href: string) =>
+        pathname === href || (href === "/blog" && pathname.startsWith("/blog/"));
+    return (
+        <>
+            <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+                <div className="mx-auto flex h-20 w-full max-w-6xl items-center gap-4 px-5">
+                    <Link href="/" className={logo}>
+                        <span className={mark}>
+                            <Droplets className="size-6" />
+                        </span>
+                        <span>
+                            {BRAND}
+                            <small className="block text-xs font-normal text-slate-500">
+                                {TAGLINE}
+                            </small>
+                        </span>
+                    </Link>
+                    <nav className="mr-auto hidden items-center gap-1 lg:flex">
+                        {NAV.map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={
+                                    isActive(item.href)
+                                        ? "rounded-xl bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700"
+                                        : "rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 hover:text-blue-700"
+                                }
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                    </nav>
+                    <a
+                        href={`tel:${PHONE_TEL}`}
+                        className="hidden items-center gap-2 text-lg font-extrabold text-blue-700 lg:flex"
+                        dir="ltr"
+                    >
+                        <Phone className="size-5" />
+                        {PHONE}
+                    </a>
+                    <button
+                        type="button"
+                        className="mr-auto rounded-xl border border-slate-200 p-2 text-slate-700 lg:hidden"
+                        aria-label="منو"
+                        onClick={() => setOpen(true)}
+                    >
+                        <Menu className="size-6" />
+                    </button>
+                </div>
+            </header>
+            {open && (
+                <div
+                    className="fixed inset-0 z-50 bg-slate-950/40"
+                    onClick={() => setOpen(false)}
+                >
+                    <aside
+                        className="mr-auto flex h-full w-80 max-w-full flex-col gap-2 bg-white p-5 shadow-2xl"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <div className="mb-3 flex items-center justify-between">
+                            <span className={logo}>
+                                <span className={mark}>
+                                    <Droplets className="size-6" />
+                                </span>
+                                {BRAND}
+                            </span>
+                            <button
+                                type="button"
+                                className="rounded-xl bg-slate-100 p-2"
+                                aria-label="بستن منو"
+                                onClick={() => setOpen(false)}
+                            >
+                                <X className="size-5" />
+                            </button>
+                        </div>
+                        {NAV.map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={
+                                    isActive(item.href)
+                                        ? "rounded-xl bg-blue-50 px-4 py-3 font-bold text-blue-700"
+                                        : "rounded-xl px-4 py-3 font-semibold text-slate-700 hover:bg-slate-50"
+                                }
+                                onClick={() => setOpen(false)}
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                        <Link
+                            href="/contact"
+                            className="mt-3 flex items-center justify-center gap-2 rounded-full bg-orange-500 px-5 py-3 font-bold text-white"
+                            onClick={() => setOpen(false)}
+                        >
+                            <FilePenLine className="size-5" />
+                            درخواست خدمات
+                        </Link>
+                        <a
+                            href={`tel:${PHONE_TEL}`}
+                            className="flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-3 font-bold text-blue-700"
+                        >
+                            <Phone className="size-5" />
+                            {PHONE}
+                        </a>
+                    </aside>
+                </div>
+            )}
+        </>
+    );
 }

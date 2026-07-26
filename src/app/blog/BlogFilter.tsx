@@ -5,30 +5,36 @@ import ArticlesGrid from "@/components/sections/ArticlesGrid";
 import type { Article } from "@/types";
 
 interface BlogFilterProps {
-  articles: Article[];
+    articles: Article[];
 }
 
 export default function BlogFilter({ articles }: BlogFilterProps) {
-  const categories = ["همه", ...new Set(articles.map((a) => a.cat))];
-  const [active, setActive] = useState("همه");
-
-  const list = active === "همه" ? articles : articles.filter((a) => a.cat === active);
-
-  return (
-    <>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 34 }}>
-        {categories.map((c) => (
-          <button
-            key={c}
-            className={`btn ${c === active ? "btn-primary" : "btn-ghost"}`}
-            style={{ fontSize: 14, padding: "9px 18px" }}
-            onClick={() => setActive(c)}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
-      <ArticlesGrid articles={list} />
-    </>
-  );
+    const all = "همه";
+    const categories = [all, ...new Set(articles.map((article) => article.cat))];
+    const [active, setActive] = useState(all);
+    const list =
+        active === all
+            ? articles
+            : articles.filter((article) => article.cat === active);
+    return (
+        <>
+            <div className="mb-8 flex flex-wrap gap-3">
+                {categories.map((category) => (
+                    <button
+                        key={category}
+                        type="button"
+                        className={
+                            category === active
+                                ? "rounded-full bg-blue-700 px-5 py-2 text-sm font-bold text-white shadow-md"
+                                : "rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-bold text-blue-700 transition hover:border-blue-700 hover:bg-blue-50"
+                        }
+                        onClick={() => setActive(category)}
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
+            <ArticlesGrid articles={list} />
+        </>
+    );
 }

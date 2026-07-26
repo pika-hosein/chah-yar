@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   if (!body.name?.trim() || !body.phone?.trim() || !body.serviceType?.trim()) {
     return NextResponse.json(
       { ok: false, error: "نام، شماره تماس و نوع خدمت الزامی است." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

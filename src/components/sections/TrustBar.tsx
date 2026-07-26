@@ -1,25 +1,27 @@
-import { Clock, ShieldCheck, BadgePercent, MapPin, Award } from "lucide-react";
+import { Award, BadgePercent, Clock, MapPin, ShieldCheck } from "lucide-react";
+
+const items = [
+    [Clock, "خدمات ۲۴ ساعته"],
+    [ShieldCheck, "گارانتی کتبی کار"],
+    [BadgePercent, "تماس و بازدید رایگان"],
+    [MapPin, "پوشش سراسری تهران"],
+    [Award, "۱۵ سال تجربه"],
+] as const;
 
 export default function TrustBar() {
-  return (
-    <div className="bg-(--brand) text-white" dir="rtl">
-      <div className="container mx-auto flex flex-wrap justify-center gap-x-7.5 gap-y-2.5 py-3">
-        <span className="inline-flex items-center gap-2 text-sm font-semibold">
-          <Clock className="w-4 h-4 opacity-90" aria-hidden="true" /> خدمات ۲۴ ساعته
-        </span>
-        <span className="inline-flex items-center gap-2 text-sm font-semibold">
-          <ShieldCheck className="w-4 h-4 opacity-90" aria-hidden="true" /> گارانتی کتبی کار
-        </span>
-        <span className="inline-flex items-center gap-2 text-sm font-semibold">
-          <BadgePercent className="w-4 h-4 opacity-90" aria-hidden="true" /> تماس و بازدید رایگان
-        </span>
-        <span className="inline-flex items-center gap-2 text-sm font-semibold">
-          <MapPin className="w-4 h-4 opacity-90" aria-hidden="true" /> پوشش سراسری تهران
-        </span>
-        <span className="inline-flex items-center gap-2 text-sm font-semibold">
-          <Award className="w-4 h-4 opacity-90" aria-hidden="true" /> ۱۵ سال تجربه
-        </span>
-      </div>
-    </div>
-  );
+    return (
+        <div className="bg-blue-700 text-white">
+            <div className="mx-auto flex w-full max-w-6xl flex-wrap justify-center gap-x-8 gap-y-2 px-5 py-3">
+                {items.map(([Icon, text]) => (
+                    <span
+                        key={text}
+                        className="inline-flex items-center gap-2 text-sm font-semibold"
+                    >
+                        <Icon className="size-4" />
+                        {text}
+                    </span>
+                ))}
+            </div>
+        </div>
+    );
 }

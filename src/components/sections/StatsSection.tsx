@@ -1,21 +1,23 @@
 interface Stat {
-  num: string;
-  lbl: string;
+    num: string;
+    lbl: string;
 }
 
 interface StatsSectionProps {
-  stats: Stat[];
+    stats: Stat[];
 }
 
 export default function StatsSection({ stats }: StatsSectionProps) {
-  return (
-    <div className="stats">
-      {stats.map((s) => (
-        <div key={s.lbl} className="stat">
-          <div className="num">{s.num}</div>
-          <div className="lbl">{s.lbl}</div>
+    return (
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+            {stats.map((stat) => (
+                <div key={stat.lbl} className="p-6 text-center">
+                    <div className="text-4xl font-extrabold text-blue-700">
+                        {stat.num}
+                    </div>
+                    <div className="text-sm text-slate-500">{stat.lbl}</div>
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 }

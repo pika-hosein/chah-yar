@@ -7,89 +7,76 @@ import { reviews } from "@/data/reviews";
 
 export const metadata: Metadata = {
   title: "نظرات مشتریان",
-  description: "تجربه‌ی واقعی کسانی که از خدمات چاه‌یار استفاده کرده‌اند.",
+  description: "تجربهٔ واقعی کسانی که از خدمات چاه‌یار استفاده کرده‌اند.",
 };
 
 export default function ReviewsPage() {
   return (
-    <div className="flex flex-col flex-1">
+    <main className="flex flex-1 flex-col">
       <PageHero
         crumbs={[{ label: "خانه", href: "/" }, { label: "نظرات مشتریان" }]}
         title="نظرات مشتریان"
-        description="تجربه‌ی واقعی کسانی که از خدمات چاه‌یار استفاده کرده‌اند."
+        description="تجربهٔ واقعی کسانی که از خدمات چاه‌یار استفاده کرده‌اند."
       />
 
-      <section className="section-tight">
-        <div className="container">
-          <div
-            className="card"
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 30,
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div style={{ display: "flex", gap: 22, alignItems: "center" }}>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 54, fontWeight: 800, color: "var(--brand)", lineHeight: 1 }}>
+      <section className="py-10 md:py-16">
+        <div className="mx-auto w-full max-w-6xl px-5">
+          <div className="flex flex-col items-center justify-between gap-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-lg md:flex-row md:p-8">
+            <div className="flex items-center gap-5">
+              <div className="text-center">
+                <div className="text-5xl font-extrabold leading-none text-blue-700">
                   ۴.۹
                 </div>
-                <div className="stars" style={{ justifyContent: "center", marginTop: 6 }}>
+                <div className="mt-2 flex justify-center gap-1 text-amber-500">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} fill="currentColor" />
+                    <Star key={i} className="size-4 fill-current" />
                   ))}
                 </div>
               </div>
               <div>
-                <b style={{ fontSize: 19 }}>رضایت عالی مشتریان</b>
-                <p className="muted" style={{ margin: "4px 0 0" }}>
+                <b className="text-lg">رضایت عالی مشتریان</b>
+                <p className="mt-1 mb-0 text-slate-500">
                   بر اساس بیش از ۱٬۸۰۰ نظر ثبت‌شده
                 </p>
               </div>
             </div>
-            <div style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 26, fontWeight: 800 }}>۹۸٪</div>
-                <div className="muted" style={{ fontSize: 14 }}>
-                  پیشنهاد به دیگران
-                </div>
+            <div className="flex flex-wrap justify-center gap-7 text-center">
+              <div>
+                <div className="text-2xl font-extrabold">۹۸٪</div>
+                <div className="text-sm text-slate-500">پیشنهاد به دیگران</div>
               </div>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 26, fontWeight: 800 }}>+۱۲هزار</div>
-                <div className="muted" style={{ fontSize: 14 }}>
-                  پروژه‌ی انجام‌شده
-                </div>
+              <div>
+                <div className="text-2xl font-extrabold">+۱۲هزار</div>
+                <div className="text-sm text-slate-500">پروژهٔ انجام‌شده</div>
               </div>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 26, fontWeight: 800 }}>۳۰دقیقه</div>
-                <div className="muted" style={{ fontSize: 14 }}>
-                  میانگین اعزام
-                </div>
+              <div>
+                <div className="text-2xl font-extrabold">۳۰ دقیقه</div>
+                <div className="text-sm text-slate-500">میانگین اعزام</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section pt-2.5">
-        <div className="container">
+      <section className="pb-16 md:pb-24">
+        <div className="mx-auto w-full max-w-6xl px-5">
           <ReviewsGrid reviews={reviews} />
         </div>
       </section>
 
-      <section className="section" style={{ background: "var(--surface)" }}>
-        <div className="container" style={{ maxWidth: 720 }}>
-          <div className="section-head center">
-            <h2 style={{ fontSize: 28 }}>تجربه‌ی خود را ثبت کنید</h2>
-            <p>نظر شما به دیگران در انتخاب بهتر کمک می‌کند.</p>
+      <section className="bg-slate-50 py-12 md:py-20">
+        <div className="mx-auto w-full max-w-2xl px-5">
+          <div className="text-center">
+            <h2 className="mb-3 text-3xl">تجربهٔ خود را ثبت کنید</h2>
+            <p className="m-0 text-slate-500">
+              نظر شما به دیگران در انتخاب بهتر کمک می‌کند.
+            </p>
           </div>
-          <div style={{ marginTop: 28 }}>
+          <div className="mt-7">
             <ReviewForm />
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

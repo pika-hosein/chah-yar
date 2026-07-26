@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
   if (!body.name?.trim() || !body.rating?.trim() || !body.text?.trim()) {
     return NextResponse.json(
       { ok: false, error: "نام، امتیاز و متن نظر الزامی است." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

@@ -1,124 +1,116 @@
 import Link from "next/link";
 import {
-  Droplets,
-  PhoneCall,
-  Smartphone,
-  Clock,
-  MapPin,
-  Camera,
-  Send,
-  MessageCircle,
+    Camera,
+    Clock,
+    Droplets,
+    MapPin,
+    MessageCircle,
+    PhoneCall,
+    Send,
+    Smartphone,
 } from "lucide-react";
 import { BRAND, MOBILE, MOBILE_TEL, NAV, PHONE, PHONE_TEL } from "@/lib/site";
 
+const services = [
+    "تخلیه چاه",
+    "لوله‌بازکنی",
+    "حفر چاه",
+    "تشخیص ترکیدگی لوله",
+    "نصب پمپ لجن‌کش",
+];
+const link = "block text-sm text-slate-300 transition hover:text-white";
+
 export default function SiteFooter() {
-  return (
-    <footer className="site-footer">
-      <div className="container footer-top">
-        <div className="footer-col">
-          <Link href="/" className="logo">
-            <span className="logo-mark">
-              <Droplets />
-            </span>
-            {BRAND}
-          </Link>
-          <p style={{ maxWidth: 280 }}>
-            واسطه‌ی مطمئن خدمات تخلیه چاه، لوله‌بازکنی و حفر چاه با پوشش
-            سراسری و خدمات شبانه‌روزی.
-          </p>
-          <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
-            <a
-              href="#"
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: 10,
-                background: "rgba(255,255,255,.08)",
-                display: "grid",
-                placeItems: "center",
-                margin: 0,
-              }}
-            >
-              <Camera />
-            </a>
-            <a
-              href="#"
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: 10,
-                background: "rgba(255,255,255,.08)",
-                display: "grid",
-                placeItems: "center",
-                margin: 0,
-              }}
-            >
-              <Send />
-            </a>
-            <a
-              href="#"
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: 10,
-                background: "rgba(255,255,255,.08)",
-                display: "grid",
-                placeItems: "center",
-                margin: 0,
-              }}
-            >
-              <MessageCircle />
-            </a>
-          </div>
+    return (
+        <footer className="mt-10 bg-slate-900 text-slate-300">
+            <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                    <Link
+                        href="/"
+                        className="mb-4 flex items-center gap-3 text-xl font-extrabold text-white"
+                    >
+                        <span className="grid size-11 place-items-center rounded-xl bg-blue-700">
+                            <Droplets className="size-6" />
+                        </span>
+                        {BRAND}
+                    </Link>
+                    <p className="max-w-xs text-sm">
+                        واسطهٔ مطمئن خدمات تخلیه چاه، لوله‌بازکنی و حفر چاه با پوشش سراسری و
+                        خدمات شبانه‌روزی.
+                    </p>
+                    <div className="mt-4 flex gap-2">
+                        {[Camera, Send, MessageCircle].map((Icon, index) => (
+                            <a
+                                key={index}
+                                href="#"
+                                className="grid size-10 place-items-center rounded-xl bg-white/10 transition hover:bg-white/20"
+                                aria-label="شبکه اجتماعی"
+                            >
+                                <Icon className="size-5" />
+                            </a>
+                        ))}
+                    </div>
+                </div>
+                <FooterColumn title="دسترسی سریع">
+                    {NAV.map((item) => (
+                        <Link key={item.href} href={item.href} className={link}>
+                            {item.label}
+                        </Link>
+                    ))}
+                    <Link href="/contact" className={link}>
+                        تماس با ما
+                    </Link>
+                </FooterColumn>
+                <FooterColumn title="خدمات">
+                    {services.map((service) => (
+                        <Link key={service} href="/services" className={link}>
+                            {service}
+                        </Link>
+                    ))}
+                </FooterColumn>
+                <FooterColumn title="تماس با ما">
+                    <div className="flex items-center gap-2 text-sm">
+                        <PhoneCall className="size-5 text-blue-400" />
+                        <a href={`tel:${PHONE_TEL}`} dir="ltr">
+                            {PHONE}
+                        </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                        <Smartphone className="size-5 text-blue-400" />
+                        <a href={`tel:${MOBILE_TEL}`} dir="ltr">
+                            {MOBILE}
+                        </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                        <Clock className="size-5 text-blue-400" />
+                        ۲۴ ساعته، ۷ روز هفته
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                        <MapPin className="size-5 text-blue-400" />
+                        تهران و حومه — پوشش سراسری
+                    </div>
+                </FooterColumn>
+            </div>
+            <div className="border-t border-white/10">
+                <div className="mx-auto flex w-full max-w-6xl flex-wrap justify-between gap-3 px-5 py-5 text-sm text-slate-400">
+                    <span>© ۱۴۰۴ {BRAND} — تمامی حقوق محفوظ است.</span>
+                    <span>طراحی‌شده برای نمونهٔ اولیه</span>
+                </div>
+            </div>
+        </footer>
+    );
+}
+function FooterColumn({
+    title,
+    children,
+}: {
+    title: string;
+    children: React.ReactNode;
+}) {
+    return (
+        <div className="flex flex-col gap-3">
+            <h4 className="mb-1 text-base text-white">{title}</h4>
+            {children}
         </div>
-
-        <div className="footer-col">
-          <h4>دسترسی سریع</h4>
-          {NAV.map((n) => (
-            <Link key={n.href} href={n.href}>
-              {n.label}
-            </Link>
-          ))}
-          <Link href="/contact">تماس با ما</Link>
-        </div>
-
-        <div className="footer-col">
-          <h4>خدمات</h4>
-          <Link href="/services">تخلیه چاه</Link>
-          <Link href="/services">لوله‌بازکنی</Link>
-          <Link href="/services">حفر چاه</Link>
-          <Link href="/services">تشخیص ترکیدگی لوله</Link>
-          <Link href="/services">نصب پمپ لجن‌کش</Link>
-        </div>
-
-        <div className="footer-col footer-contact">
-          <h4>تماس با ما</h4>
-          <div className="row">
-            <PhoneCall />
-            <a href={`tel:${PHONE_TEL}`} style={{ margin: 0, direction: "ltr" }}>
-              {PHONE}
-            </a>
-          </div>
-          <div className="row">
-            <Smartphone />
-            <a href={`tel:${MOBILE_TEL}`} style={{ margin: 0, direction: "ltr" }}>
-              {MOBILE}
-            </a>
-          </div>
-          <div className="row">
-            <Clock />
-            <span style={{ color: "#a9bdd4" }}>۲۴ ساعته، ۷ روز هفته</span>
-          </div>
-          <div className="row">
-            <MapPin />
-            <span style={{ color: "#a9bdd4" }}>تهران و حومه — پوشش سراسری</span>
-          </div>
-        </div>
-      </div>
-      <div className="container footer-bottom">
-        <span>© ۱۴۰۴ {BRAND} — تمامی حقوق محفوظ است.</span>
-        <span>طراحی‌شده برای نمونه‌ی اولیه</span>
-      </div>
-    </footer>
-  );
+    );
 }
