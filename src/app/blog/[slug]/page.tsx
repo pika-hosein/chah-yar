@@ -128,7 +128,7 @@ export default async function ArticlePage({ params }: PageParams) {
                         </span>
                         <span className="inline-flex items-center gap-2">
                             <Clock className="size-4" />
-                            {article.read}
+                            ۵ دقیقه مطالعه
                         </span>
                     </div>
                 </div>

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
-import "./globals.css";
+import localFont from "next/font/local";
+import "../style/globals.css";
 import SiteHeader from "@/components/layout/SiteHeader";
 import FloatingCallButton from "@/components/layout/FloatingCallButton";
 import SiteFooter from "@/components/layout/SiteFooter";
 
-const vazirmatn = Vazirmatn({
-  subsets: ["arabic"],
-  variable: "--font-vazirmatn",
+const yekanBakh = localFont({
+  src: "../fonts/YekanBakhFaNum-VF.woff2",
+  variable: "--font-yekanbakh",
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={vazirmatn.variable}>
+    <html lang="fa" dir="rtl" className={yekanBakh.variable}>
       <body>
         <SiteHeader />
         {children}
