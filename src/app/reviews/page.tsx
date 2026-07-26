@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Star } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
-import ReviewsGrid from "@/components/sections/ReviewsGrid";
+import LiveReviewsGrid from "@/components/sections/LiveReviewsGrid";
 import ReviewForm from "@/components/forms/ReviewForm";
 import { reviews } from "@/data/reviews";
 
@@ -60,7 +60,7 @@ export default function ReviewsPage() {
 
       <section className="pb-16 md:pb-24">
         <div className="mx-auto w-full max-w-6xl px-5">
-          <ReviewsGrid reviews={reviews} />
+          <LiveReviewsGrid fallbackReviews={reviews} />
         </div>
       </section>
 

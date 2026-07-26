@@ -1,6 +1,20 @@
 # chah-yar
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## MongoDB setup
+
+Copy `.env.example` to `.env.local`, then enter your MongoDB Atlas connection string:
+
+```env
+MONGODB_URI=mongodb+srv://USERNAME:PASSWORD@CLUSTER.mongodb.net/?retryWrites=true&w=majority
+MONGODB_DB=chah-yar
+ADMIN_API_KEY=replace-with-a-long-random-secret
+```
+
+The API stores service requests in the `contactRequests` collection and customer reviews in `reviews`.
+New reviews are stored with `pending` status; only records with `approved` status are returned by `GET /api/reviews`.
+
+To moderate reviews, send `x-admin-key` with the value of `ADMIN_API_KEY` to `GET /api/admin/reviews` or `PATCH /api/admin/reviews`.
+The built-in moderation page is available at `/admin/reviews`.
 
 ## Getting Started
 
@@ -19,8 +33,6 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 
